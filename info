@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# This file outputs info on the dotfiles setup on this system
+
+filecount="$(lsd -l | wc -l)"
+filecount=$((filecount-=1))
+
+echo "The number of dotfiles used to config this system are: $filecount"
+
+echo "The dotfiles are for user: $USER"
+
+echo "Their home directory is: $HOME
