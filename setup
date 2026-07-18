@@ -4,8 +4,22 @@
 
 mkdir -p ~/.config
 
-ln -sf ~/dotfiles/bashrc ~/.bashrc
-ln -sf ~/dotfiles/vimrc ~/.vimrc
-ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
+# link files using array
+files=("bashrc" "vimrc" "starship.toml")
+
+df_path="$HOME/dotfiles/"
+
+link_file() {
+	for file in "${files[@]}"; do
+		[[ -f "$df_path$file" ]] || 
+			echo "Missing file: $df_path$file" continue
+		ln -sf "$df_path$file" "$HOME/.$file"
+	done
+}
+
+link_file
+# ln -sf ~/dotfiles/bashrc ~/.bashrc
+# ln -sf ~/dotfiles/vimrc ~/.vimrc
+# ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
 
 echo "Dotfiles linked!"
